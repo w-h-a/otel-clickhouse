@@ -1,0 +1,62 @@
+dist:
+  module: github.com/w-h-a/otel-clickhouse
+  name: otelcol-clickhouse
+  description: OpenTelemetry Collector For Clickhouse
+  version: 0.114.0
+  output_path: ./_build
+
+extensions:
+  - gomod: go.opentelemetry.io/collector/extension/zpagesextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/ackextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/awsproxy v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/googleclientauthextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/oidcauthextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/sigv4authextension v0.114.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.114.0
+  - gomod: go.opentelemetry.io/collector/exporter/nopexporter v0.114.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.114.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/clickhouseexporter v0.114.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.114.0
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.114.0
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/nopreceiver v0.114.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.114.0
+
+connectors:
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/exceptionsconnector v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/otlpjsonconnector v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/servicegraphconnector v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.114.0
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.20.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.20.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.20.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.20.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.20.0
+
+# When adding a replace, add a comment before it to document why it's needed and when it can be removed
+replaces:
+  # see https://github.com/openshift/api/pull/1515
+  - github.com/openshift/api => github.com/openshift/api v0.0.0-20230726162818-81f778f3b3ec
