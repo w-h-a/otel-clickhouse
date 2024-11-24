@@ -26,8 +26,6 @@ COPY --from=build /go/otelcol/_build/otelcol-clickhouse /
 # copy over the config
 COPY --from=build /go/otelcol/config.yml /etc/otel/
 
-EXPOSE 4317 4318
-
 # run the binary as the entrypoint and pass the config file
 ENTRYPOINT [ "/otelcol-clickhouse" ]
 CMD [ "--config", "/etc/otel/config.yml" ]
