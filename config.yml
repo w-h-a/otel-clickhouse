@@ -20,7 +20,7 @@ extensions:
 exporters:
   clickhouse:
     endpoint: tcp://clickhouse:9000
-    database: otel
+    database: default
     traces_table_name: otel_traces
     timeout: 10s
     sending_queue:
