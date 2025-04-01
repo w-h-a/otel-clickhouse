@@ -21,11 +21,11 @@ FROM alpine
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 # copy over the binary built
-COPY --from=build /go/otelcol/_build/otelcol-clickhouse /
+COPY --from=build /go/otelcol/_build/otelcol /
 
 # copy over the config
 COPY --from=build /go/otelcol/config.yml /etc/otel/
 
 # run the binary as the entrypoint and pass the config file
-ENTRYPOINT [ "/otelcol-clickhouse" ]
+ENTRYPOINT [ "/otelcol" ]
 CMD [ "--config", "/etc/otel/config.yml" ]
