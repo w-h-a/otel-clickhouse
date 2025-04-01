@@ -20,6 +20,10 @@ extensions:
   zpages: {}
 
 exporters:
+  prometheusremotewrite:
+    endpoint: http://prometheus:9090/api/v1/otlp/v1/metrics
+    tls:
+      insecure: true
   clickhouse:
     endpoint: tcp://clickhouse:9000
     database: default
@@ -38,6 +42,10 @@ exporters:
 service:
   extensions: [ health_check, zpages ]
   pipelines:
+    metrics:
+      receivers: [ otlp ]
+      processors: [ memory_limiter, batch ]
+      exporters: [ prometheusremotewrite ]
     traces:
       receivers: [ otlp ]
       processors: [ memory_limiter, batch ]
