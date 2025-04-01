@@ -1,1 +1,1 @@
-# otel-clickhouse
+# otel-coll
