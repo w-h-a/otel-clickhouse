@@ -5,6 +5,7 @@ receivers:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
+  docker_stats:
 
 processors:
   batch:
@@ -24,6 +25,8 @@ exporters:
     endpoint: http://prometheus:9090/api/v1/write
     tls:
       insecure: true
+    resource_to_telemetry_conversion:
+      enabled: true
   clickhouse:
     endpoint: tcp://clickhouse:9000
     database: default
@@ -43,7 +46,7 @@ service:
   extensions: [ health_check, zpages ]
   pipelines:
     metrics:
-      receivers: [ otlp ]
+      receivers: [ otlp, docker_stats ]
       processors: [ memory_limiter, batch ]
       exporters: [ prometheusremotewrite ]
     traces:
